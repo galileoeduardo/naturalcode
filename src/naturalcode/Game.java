@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -19,6 +20,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean isRunning = false;
 	private int fps;
 	
+	private SpriteSheet sheet;
+	private BufferedImage ball;
 
 	public Game() {
 		this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
@@ -29,6 +32,11 @@ public class Game extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		sheet = new SpriteSheet("/spritesheet.png");
+		ball = sheet.getSprite(0, 0, 16, 16);
+		
+		
 	}
 
 	public static void main(String[] args) {
@@ -100,6 +108,10 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
+		
+		g.drawImage(ball,0,0,null);
+		
+		g.dispose();
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial", Font.BOLD,12));
