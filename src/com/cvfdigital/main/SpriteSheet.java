@@ -1,11 +1,11 @@
-package naturalcode;
+package com.cvfdigital.main;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class SpriteSheet {
 	
-	private BufferedImage spritesheet;
+	private static BufferedImage spritesheet;
 	
 	public SpriteSheet(String path) {
 		try {
@@ -15,7 +15,7 @@ public class SpriteSheet {
 		}
 	}
 	
-	public BufferedImage getSprite(int x, int y, int width, int height) {
+	public static BufferedImage getSprite(int x, int y, int width, int height) {
 		return spritesheet.getSubimage(x, y, width, height);
 	}
 
