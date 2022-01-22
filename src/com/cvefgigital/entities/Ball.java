@@ -1,8 +1,6 @@
 package com.cvefgigital.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import com.cvefdigital.core.GameObject;
 import com.cvefdigital.core.Vector2D;

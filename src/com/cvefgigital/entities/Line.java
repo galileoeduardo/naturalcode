@@ -2,10 +2,8 @@ package com.cvefgigital.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 
 import com.cvefdigital.core.Vector2D;
-import com.cvfdigital.main.Game;
 
 public class Line {
 	

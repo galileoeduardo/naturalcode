@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.List;
 import java.awt.TextArea;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -38,7 +37,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 	public static JFrame console;
 	public static TextArea debug;
 	
-	public static SpriteSheet sheets = new SpriteSheet("/spr2itesheet.png");;
+	public static SpriteSheet sheets = new SpriteSheet("/spritesheet.png");;
 	
 	public Player player;
 	public ArrayList<Ball> balls = new ArrayList<Ball>();
@@ -168,6 +167,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     public void mousePressed(MouseEvent e) {}  
     public void mouseReleased(MouseEvent e){}
     
+    @Override
     public void mouseMoved(MouseEvent e)   {
     	
     	int x = e.getPoint().x;
