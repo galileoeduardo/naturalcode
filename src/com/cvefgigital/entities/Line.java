@@ -16,14 +16,14 @@ public class Line {
 		positionEnd = new Vector2D(ex,ey);
 	}
 	
-	public void update(Vector2D vector) {
+	public void Update(Vector2D vector) {
 		
 		positionEnd.SetLocation(vector);
 		vector.Sub(positionStart);
 		mag = vector.Mag();
 	}
 	
-	public void render(Graphics g) {
+	public void Render(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.drawLine(positionStart.getX(), positionStart.getY(), positionEnd.getX(), positionEnd.getY());
 		g.fillRect(0, 0, Math.round(mag), 10);

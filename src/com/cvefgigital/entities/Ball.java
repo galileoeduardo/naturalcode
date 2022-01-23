@@ -18,17 +18,17 @@ public class Ball extends GameObject {
 		this.acceleration = new Vector2D(0,0);
 	}
 	
-	public void update() {
+	public void Update() {
 		BounceOutOfBounds();
 		MouseFollow();
 		position.Add(velocity);
 	}
 	
-	public void update(Vector2D mouse) {
+	public void Update(Vector2D mouse) {
 		this.mouse.SetLocation(mouse);
 	}
 	
-	public void render(Graphics g) {
+	public void Render(Graphics g) {
 		g.drawImage(SpriteSheet.getSprite(0, 0, getWidth(), getHeight()), position.getX(), position.getY(), getWidth(), getHeight(), null);
 	}
 	
@@ -47,30 +47,5 @@ public class Ball extends GameObject {
 		velocity.Limit(2);
 	}
 	
-	public void BounceOutOfBounds() {
-		
-		if (Game.Screen.IsOutOfBoundsHorizontal(position.getX())) {
-			velocity.x = velocity.x * -1f;
-		} else if (Game.Screen.IsOutOfBoundsVertical(position.getY())) {
-			velocity.y = velocity.y * -1f;
-		}
-	
-	}
-	
-	public void SeedOtherSide() {
-		
-		if (Game.Screen.IsOutOfBoundsLeft(position.getX())) {
-			position.setX(Game.Screen.WIDTH - getWidth());
-		} else if (Game.Screen.IsOutOfBoundsRight(position.getX() + getWidth())) {
-			position.setX(0);
-		}
-		
-		if (Game.Screen.IsOutOfBoundsTop(position.getY())) {
-			position.setY(Game.Screen.HEIGHT - getHeight());
-		} else if (Game.Screen.IsOutOfBoundsBottom(position.getY() + getWidth())) {
-			position.setY(0);
-		}
-		
-	}
 	
 }

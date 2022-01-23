@@ -14,10 +14,13 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import com.cvefdigital.core.GameObject;
 import com.cvefdigital.core.Screen;
 import com.cvefdigital.core.Vector2D;
 import com.cvefgigital.entities.Player;
 import com.cvefgigital.entities.Ball;
+import com.cvefgigital.entities.Ballon;
+import com.cvefgigital.entities.BasketBall;
 
 
 public class Game extends Canvas implements Runnable, MouseListener, MouseMotionListener {
@@ -29,7 +32,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 	public static JFrame frame;
 	private final static int WIDTH = 177;
 	private final static int HEIGHT = 100;
-	private final static int SCALE = 5;
+	public final static int SCALE = 3;
 	private Thread thread;
 	private boolean isRunning = false;
 	private int fps;
@@ -40,7 +43,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 	public static SpriteSheet sheets = new SpriteSheet("/spritesheet.png");;
 	
 	public Player player;
-	public ArrayList<Ball> balls = new ArrayList<Ball>();
+	public ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
 	public Game() {
 		
@@ -66,11 +69,11 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		for(int i = 0; i < 50; i++) {
-			Vector2D random = Vector2D.Random2D(0, Screen.WIDTH);
-			Ball ball = new Ball(random.x,random.y);
-			balls.add(ball);
-		}
+		
+		//Ballon ballon = new Ballon(Screen.CENTER_X, Screen.CENTER_Y);
+		BasketBall basketBall = new BasketBall(0, 50 * Game.SCALE);
+		objects.add(basketBall);
+		
 		
 		
 	}
@@ -130,8 +133,8 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 	}
 	
 	public void update() {
-		for(int i = 0; i < balls.size(); i++) {
-			balls.get(i).update();
+		for(int i = 0; i < objects.size(); i++) {
+			objects.get(i).Update();
 		}
 		
 	}
@@ -148,8 +151,8 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 		
-		for(int i = 0; i < balls.size(); i++) {
-			balls.get(i).render(g);
+		for(int i = 0; i < objects.size(); i++) {
+			objects.get(i).Render(g);
 		}
 		
 		g.dispose();
@@ -163,9 +166,17 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 	
 	public void mouseClicked(MouseEvent e) {}  
     public void mouseEntered(MouseEvent e) {}
-    public void mouseExited(MouseEvent e)  {}  
-    public void mousePressed(MouseEvent e) {}  
-    public void mouseReleased(MouseEvent e){}
+    public void mouseExited(MouseEvent e)  {}
+    @Override
+    public void mousePressed(MouseEvent e) {
+    	
+    	
+    }
+    
+    @Override
+    public void mouseReleased(MouseEvent e){
+    	
+    }
     
     @Override
     public void mouseMoved(MouseEvent e)   {
@@ -176,10 +187,6 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     	Vector2D mouse = new Vector2D(0,0);
     	mouse.setX(x);
     	mouse.setY(y);
-    	
-    	for(int i = 0; i < balls.size(); i++) {
-			balls.get(i).update(mouse);
-		}
     	
     }
     
