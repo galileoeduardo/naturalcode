@@ -26,7 +26,7 @@ public class Ballon extends GameObject {
 	
 	public void Render(Graphics g) {
 		g.drawImage(
-				SpriteSheet.getSprite(16, 0, getWidth(),getHeight()),
+				SpriteSheet.getSprite(16, 0, 16,16),
 				position.getX(), position.getY(), getWidth(), getHeight(),
 				null
 		);
@@ -36,13 +36,13 @@ public class Ballon extends GameObject {
 		
 		if (Game.Screen.IsOutOfBoundsLeft(position.getX())) {
 			position.setX(Game.Screen.WIDTH - getWidth());
-		} else if (Game.Screen.IsOutOfBoundsRight(position.getX() + getWidth())) {
+		} else if (Game.Screen.IsOutOfBoundsRight(position.getX(),getWidth())) {
 			position.setX(0);
 		}
 		
 		if (Game.Screen.IsOutOfBoundsTop(position.getY())) {
 			position.setY(Game.Screen.HEIGHT - getHeight());
-		} else if (Game.Screen.IsOutOfBoundsBottom(position.getY() + getWidth())) {
+		} else if (Game.Screen.IsOutOfBoundsBottom(position.getY(),getHeight())) {
 			position.setY(0);
 		}
 		

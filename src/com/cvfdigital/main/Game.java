@@ -69,13 +69,12 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		
-		//Ballon ballon = new Ballon(Screen.CENTER_X, Screen.CENTER_Y);
-		BasketBall basketBall = new BasketBall(0, 50 * Game.SCALE);
+		Ball ball = new Ball(Screen.CENTER_X, Screen.CENTER_Y);
+		//objects.add(ball);
+		Ballon ballon = new Ballon(Screen.CENTER_X, Screen.CENTER_Y);
+		//objects.add(ballon);
+		BasketBall basketBall = new BasketBall(50, Game.Screen.CENTER_Y);
 		objects.add(basketBall);
-		
-		
-		
 	}
 
 	public static void main(String[] args) {
@@ -187,6 +186,8 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     	Vector2D mouse = new Vector2D(0,0);
     	mouse.setX(x);
     	mouse.setY(y);
+    	
+    	objects.get(0).Update(mouse);
     	
     }
     

@@ -29,45 +29,64 @@ public class Vector2D {
 	}
 	
 	public void SetLocation(Vector2D vector) {
-		x = vector.x;
-		y = vector.y;
+		this.x = vector.x;
+		this.y = vector.y;
 	}
 	
 	public void Add(Vector2D vector) {
-		x = x + vector.x;
-		y = y + vector.y;
+		this.x += vector.x;
+		this.y += vector.y;
 	}
 	
 	public void Sub(Vector2D vector) {
-		x = x - vector.x;
-		y = y - vector.y;
+		this.x -= vector.x;
+		this.y -= vector.y;
 	}
 	
 	public void Mult(float n) {
-		x = x * n;
-		y = y * n;
+		this.x *= n;
+		this.y *= n;
 	}
 	
 	public void Div(float n) {
-		x = x / n;
-		y = y / n;
+		this.x /= n;
+		this.y /= n;
+	}
+	public float MagSqrt() {
+		return x*x + y*y;
 	}
 	
 	public float Mag() {
-		double m = Math.sqrt(x*x + y*y);
-		return Math.round(m);
+		float m = (float)Math.sqrt(MagSqrt());
+		return m;
 	}
 	
 	public void Normalize() {
 		 float m = this.Mag();
 		 if (m != 0) {
-		   this.Div(m);
+		   this.Mult(1 / m);
 		 }
     }
 	
+	public void LimitX(float max) {
+		if(Math.abs(this.x) >= max) {
+			this.x  = max;
+		}
+	}
+	
+	public void LimitY(float max) {
+		if(Math.abs(this.y) >= max) {
+			this.y  = max;
+		}
+	}
+	
 	public void Limit(float max) {
-		this.Normalize();
-	    this.Mult(max);
+		float mSq = this.MagSqrt();
+		
+		  if (mSq > max * max) {
+		    this.Div((float)Math.sqrt(mSq));
+		    this.Mult(max);
+		  }
 	}
 	
 	public static Vector2D Add(Vector2D v1,Vector2D v2) {
@@ -80,6 +99,10 @@ public class Vector2D {
 	    return v3;
 	}
 	
+	public static Vector2D Div(Vector2D force, float mass) {
+		return new Vector2D(force.x/mass,force.y/mass);
+	}
+	
 	public static Vector2D Random2D(float max,float min) {
 		
 		Random rand = new Random();
@@ -88,4 +111,6 @@ public class Vector2D {
 		
 	    return new Vector2D(randX,randY);
 	}
+
+
 }

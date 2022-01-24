@@ -20,24 +20,24 @@ public class Screen {
 		return (x < 0);
 	}
 	
-	public boolean IsOutOfBoundsRight(int x) {
-		return (x > WIDTH);
+	public boolean IsOutOfBoundsRight(int x, int offset) {
+		return (x >= WIDTH - offset);
 	}
 	
 	public boolean IsOutOfBoundsHorizontal(int x) {
-		return (x > WIDTH) || (x < 0);
+		return (x >= WIDTH) || (x < 0);
 	}
 	
 	public boolean IsOutOfBoundsTop(int y) {
 		return (y < 0);
 	}
 	
-	public boolean IsOutOfBoundsBottom(int y) {
-		return (y > HEIGHT);
+	public boolean IsOutOfBoundsBottom(int y, int offset) {
+		return (y >= HEIGHT - offset);
 	}
 	
 	public boolean IsOutOfBoundsVertical(int y) {
-		return ((y > HEIGHT) || (y < 0));
+		return ((y >= HEIGHT) || (y < 0));
 	}
 
 }

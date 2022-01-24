@@ -12,7 +12,7 @@ public class Ball extends GameObject {
 	private Vector2D mouse = new Vector2D(0,0);	
 	
 	public Ball(float x, float y) {
-		super(Math.round(x),Math.round(y),32,32);
+		super(Math.round(x),Math.round(y),16,16);
 		this.position = new Vector2D(x, y);
 		this.velocity = new Vector2D(0f,0f);
 		this.acceleration = new Vector2D(0,0);
@@ -29,7 +29,7 @@ public class Ball extends GameObject {
 	}
 	
 	public void Render(Graphics g) {
-		g.drawImage(SpriteSheet.getSprite(0, 0, getWidth(), getHeight()), position.getX(), position.getY(), getWidth(), getHeight(), null);
+		g.drawImage(SpriteSheet.getSprite(0, 0, 16, 16), position.getX(), position.getY(), getWidth(), getHeight(), null);
 	}
 	
 	public void MouseFollow() {
